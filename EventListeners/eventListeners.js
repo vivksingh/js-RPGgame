@@ -22,6 +22,8 @@ window.addEventListener('keydown', (e) => {
 
     };
 
+    player.moving = true;
+
 });
 
 window.addEventListener('keyup', (e) => {
@@ -43,5 +45,7 @@ window.addEventListener('keyup', (e) => {
         break;
 
     };
+
+    player.moving = false;
    
 });
