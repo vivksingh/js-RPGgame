@@ -1,18 +1,19 @@
+
+
 const currentScene = homeScene;
 const { background, player, foreground, collisionBoundaries, movables } = currentScene;
 
-const message = new MessageBox({
-    text : "Welcome to the game!",
-})
+// const message = new MessageBox({
+//     text : "Welcome to the game!",
+//     x : canvas.width/2 - 700/2,
+//     y : 600,
+//     author : authorMap.vek
+// })
 
 // animation loop
-function animate(){
-    window.requestAnimationFrame(animate);
-    background.draw();
-    //movables.forEach(sprite => sprite.draw());
-    
-    player.draw();
-    foreground.draw();
+function gameLoop(){
+    window.requestAnimationFrame(gameLoop);
+    currentScene.draw();
 
 
     // movement handling
@@ -109,7 +110,7 @@ function animate(){
     }
 }
 
-animate();
+gameLoop();
 
 
 

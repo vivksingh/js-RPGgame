@@ -19,5 +19,3 @@ window.addEventListener('keyup', (e) => {
     player.moving = false;
 });
 
-window.keyListenerAdded = true;
-

@@ -47,5 +47,38 @@ const Utility = {
         const image = new Image();
         image.src = path;
         return image;
+    },
+
+    //Function to Draw Rounded Rectangles
+    drawRoundedRect({ x, y, width, height, radius, fillColor, strokeColor }) {
+    c.fillStyle = fillColor;
+    c.beginPath();
+
+    // Top-left corner
+    c.moveTo(x + radius, y);
+    c.lineTo(x + width - radius, y);
+    c.quadraticCurveTo(x + width, y, x + width, y + radius);
+
+    // Top-right corner
+    c.lineTo(x + width, y + height - radius);
+    c.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+
+    // Bottom-right corner
+    c.lineTo(x + radius, y + height);
+    c.quadraticCurveTo(x, y + height, x, y + height - radius);
+
+    // Bottom-left corner
+    c.lineTo(x, y + radius);
+    c.quadraticCurveTo(x, y, x + radius, y);
+
+    c.closePath();
+    c.fill();
+
+    // Stroke border if specified
+    if (strokeColor) {
+        c.strokeStyle = strokeColor;
+        c.lineWidth = 2;
+        c.stroke();
+    }
     }
 }
