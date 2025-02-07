@@ -11,15 +11,19 @@ const Utility = {
         const boundaryY = boundary.position.y;
         const boundaryWidth = boundary.width;
         const boundaryHeight = boundary.height;
-    
-        return playerX + playerWidth > boundaryX
+        
+
+        const res = playerX + playerWidth > boundaryX
         && playerX < boundaryX + boundaryWidth
         && playerY + playerHeight > boundaryY
         && playerY + playerHeight/2 < boundaryY + boundaryHeight;
+        
+        
+        return res;
     },
 
     // get collision boundaries
-    getCollisionBoundaries(boundaries){
+    getCollisionBoundaries(boundaries, offset){
         const collisionMap = []
         for(let i = 0;i<boundaries.length;i+=70){
             collisionMap.push(boundaries.slice(i, i+70));
@@ -29,17 +33,17 @@ const Utility = {
         const collisionBoundaries = [];
         collisionMap.forEach((row, rowIndex) => {
             row.forEach((cell, cellIndex) => {
-                if(cell === 1025){
+                if(cell in TileToMethodMap){
                     collisionBoundaries.push(new TriggerTile({
                         position : {
                             x : (cellIndex * TriggerTile.width) + offset.x ,
                             y : (rowIndex * TriggerTile.height) + offset.y
-                        }
+                        }, 
+                        onTrigger : TileToMethodMap[cell]
                     }));
                 };
             });
         });
-
         return collisionBoundaries;
     },
 
@@ -50,7 +54,7 @@ const Utility = {
     },
 
     //Function to Draw Rounded Rectangles
-    drawRoundedRect({ x, y, width, height, radius, fillColor, strokeColor }) {
+    drawRoundedRect({ x, y, width, height, radius = 10, fillColor, strokeColor }) {
     c.fillStyle = fillColor;
     c.beginPath();
 
@@ -80,5 +84,7 @@ const Utility = {
         c.lineWidth = 2;
         c.stroke();
     }
-    }
+    },
+    
+    
 }

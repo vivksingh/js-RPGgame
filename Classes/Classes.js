@@ -2,20 +2,20 @@ class TriggerTile {
     static width = 48;
     static height = 48;
 
-    constructor({ position }){
+    constructor({ position,  onTrigger = () => {} }){
         this.position = position;
         this.width = 48;
         this.height = 48;
+        this.onTrigger = onTrigger;
     }
 
-    draw(){
-        c.fillStyle = 'red';
+    draw(color = 'red'){
+        c.fillStyle = color;
         c.fillRect(this.position.x, this.position.y, this.width, this.height);
     }
 
     triggerEvent(){
-        //currentScene = prableenHomeScene;
-        console.log('Take to another Scene');
+        this.onTrigger();
     }
 }
 
@@ -57,7 +57,7 @@ class Sprite{
          
         if(this.frames.max > 1 && this.moving){
             this.frames.elapsed++;
-            const animationSpeed = 8;
+            const animationSpeed = 4;
 
             if(this.frames.elapsed >= animationSpeed){
                 this.frames.elapsed = 0;
@@ -68,31 +68,45 @@ class Sprite{
 }
 
 class Scene{
-    constructor({ background, player, foreground, collisionBoundariesMap, conversation = [], triggerTiles = [] }){
+    constructor({ background, player, foreground, collisionBoundariesMap, offset = {x : 0, y : 0}, conversation = [], triggerTiles = [] }){
         this.background = background;
         this.player = player;
         this.foreground = foreground;
-        this.collisionBoundaries = Utility.getCollisionBoundaries(collisionBoundariesMap);
-        this.movables = [...this.collisionBoundaries, this.background, this.foreground];
+        this.collisionBoundaries = Utility.getCollisionBoundaries(collisionBoundariesMap, offset);
         this.conversation = conversation;
-        this.triggerTiles = triggerTiles;
+        this.triggerTiles = Utility.getCollisionBoundaries(triggerTiles, offset);
+        this.movables = [...this.collisionBoundaries, ...this.triggerTiles, this.background];
+        if(this.foreground) this.movables.push(this.foreground);
+        this.offset = offset;
     }
 
     draw(){
         this.background.draw();
         this.player.draw();
-        this.foreground.draw();
+        if(this.foreground) this.foreground.draw();
     }
 
     checkTrigger(){
-        this.triggerTiles.forEach(tile => {
-            if(Utility.isColliding({
-                player : this.player,
-                boundary : tile
-            })){
-                return true;
+        for(let i=0;i<this.triggerTiles.length;i++){
+            const tile = this.triggerTiles[i];
+
+            if(Utility.isColliding({ player : this.player, boundary : tile })){
+                tile.triggerEvent();
+                return;
             }
-        })
+        }
+    }
+
+    drawTriggers(){
+        this.triggerTiles.forEach(tile => {
+            tile.draw('blue');
+        });
+    }
+
+    drawBounds(){
+        this.collisionBoundaries.forEach(boundary => {
+            boundary.draw();
+        });
     }
 }
 
@@ -109,7 +123,6 @@ class SceneTitle {
         c.fillText(this.text, 50, 50);
     }
 }
-
 
 class MessageBox {
     constructor({ text, color = "white", x, y, width = 700, height = 150, font = "20px 'Press Start 2P'", radius = 10, author = {} }) {
@@ -167,4 +180,47 @@ class MessageBox {
     }
 }
 
+class TransitionManager {
+    constructor() {
+        this.opacity = 0;
+        this.isTransitioning = false;
+        this.direction = 'in'; // 'in' for fade-in, 'out' for fade-out
+        this.callback = null;
+        this.speed = 0.05;
+    }
 
+    startTransition(callback) {
+        this.isTransitioning = true;
+        this.direction = 'in';
+        this.callback = callback;
+    }
+
+    update() {
+        if (!this.isTransitioning) return;
+
+        if (this.direction === 'in') {
+            this.opacity += this.speed;
+            if (this.opacity >= 1) {
+                this.opacity = 1;
+                this.direction = 'out';
+                if (this.callback) this.callback(); // Switch Scene Here
+            }
+        } else if (this.direction === 'out') {
+            this.opacity -= this.speed;
+            if (this.opacity <= 0) {
+                this.opacity = 0;
+                this.isTransitioning = false;
+            }
+        }
+
+    }
+
+    draw() {
+        if (this.isTransitioning) {
+            c.fillStyle = `rgba(0, 0, 0, ${this.opacity})`;
+            c.fillRect(0, 0, canvas.width, canvas.height);
+        }
+    }
+}
+
+const transitionManager = new TransitionManager();

@@ -1,23 +1,25 @@
 
 
-const currentScene = homeScene;
-const { background, player, foreground, collisionBoundaries, movables } = currentScene;
-
-// const message = new MessageBox({
-//     text : "Welcome to the game!",
-//     x : canvas.width/2 - 700/2,
-//     y : 600,
-//     author : authorMap.vek
-// })
+let currentScene = scenes.homeScene;
+const player = pb;
 
 // animation loop
 function gameLoop(){
     window.requestAnimationFrame(gameLoop);
     currentScene.draw();
+    currentScene.checkTrigger();
 
+    transitionManager.update();
+    transitionManager.draw(); 
+
+
+   currentScene.drawTriggers();
+   //currentScene.drawBounds();
 
     // movement handling
     // forward
+    const { collisionBoundaries, movables } = currentScene;
+
     if(keys.W.pressed && lastKey === 'w'){
         for(let i = 0;i<collisionBoundaries.length;i++){
             const boundary = collisionBoundaries[i];
