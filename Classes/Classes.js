@@ -17,6 +17,10 @@ class TriggerTile {
     triggerEvent(){
         this.onTrigger();
     }
+
+    startConversation(){
+
+    }
 }
 
 class Sprite{
@@ -73,17 +77,32 @@ class Scene{
         this.player = player;
         this.foreground = foreground;
         this.collisionBoundaries = Utility.getCollisionBoundaries(collisionBoundariesMap, offset);
-        this.conversation = conversation;
+        this.conversations = Utility.getMessageBoxes(conversation);
         this.triggerTiles = Utility.getCollisionBoundaries(triggerTiles, offset);
         this.movables = [...this.collisionBoundaries, ...this.triggerTiles, this.background];
         if(this.foreground) this.movables.push(this.foreground);
         this.offset = offset;
+        this.conversationIndex = -1;
     }
 
-    draw(){
+    draw() {
+        // Draw the basic scene
         this.background.draw();
         this.player.draw();
-        if(this.foreground) this.foreground.draw();
+        if (this.foreground) this.foreground.draw();
+    
+        // Handle conversations
+        if (this.conversationIndex >= this.conversations.conversation.length) {
+            this.conversations.alreadyDisplayed = true; // Mark as displayed when finished
+            this.conversationIndex = this.conversations.conversation.length - 1; // Prevent out-of-bounds
+        }
+    
+        // Display the current conversation if it exists
+        if (this.conversationIndex >= 0 && !this.conversations.alreadyDisplayed) {
+            this.conversations.conversation[this.conversationIndex].draw();
+        }
+    
+        console.log(this.conversationIndex); // For debugging
     }
 
     checkTrigger(){
@@ -125,7 +144,7 @@ class SceneTitle {
 }
 
 class MessageBox {
-    constructor({ text, color = "white", x, y, width = 700, height = 150, font = "20px 'Press Start 2P'", radius = 10, author = {} }) {
+    constructor({ text, color = "white", x = 100, y= 500, width = 700, height = 150, font = "20px 'Press Start 2P'", radius = 10, author = {} }) {
         this.text = text;
         this.color = color;
         this.font = font;
@@ -213,6 +232,8 @@ class TransitionManager {
             }
         }
 
+        this.draw();
+
     }
 
     draw() {
@@ -223,4 +244,7 @@ class TransitionManager {
     }
 }
 
-const transitionManager = new TransitionManager();
+
+
+
+

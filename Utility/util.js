@@ -86,5 +86,17 @@ const Utility = {
     }
     },
     
-    
+    getMessageBoxes(conversation){
+        const conversationObject = [];
+        conversation.forEach((message) => {
+            conversationObject.push(new MessageBox({
+                text : message.text,
+                author : message.author
+            }));
+        })
+        return {
+            conversation : conversationObject,
+            alreadyDisplayed : false
+        }
+    }
 }

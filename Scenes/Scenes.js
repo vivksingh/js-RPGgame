@@ -43,7 +43,7 @@ const scenes = {
             velocity : 0,
         }),
     
-        conversation : [],
+        conversation : Conversations.homeSceneConversation,    
     
         triggerTiles : TriggerTileMap.homeSceneTriggerTiles,
     

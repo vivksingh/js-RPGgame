@@ -5,6 +5,7 @@ window.addEventListener('keydown', (e) => {
         case 'a' : keys.A.pressed = true; lastKey = 'a'; break;
         case 's' : keys.S.pressed = true; lastKey = 's'; break;
         case 'd' : keys.D.pressed = true; lastKey = 'd'; break;
+        case 'Enter' : keys.Enter.pressed = true; break;
     };
     player.moving = true;
 });
@@ -15,7 +16,10 @@ window.addEventListener('keyup', (e) => {
         case 'a' : keys.A.pressed = false; break;
         case 's' : keys.S.pressed = false; break;
         case 'd' : keys.D.pressed = false; break;
+        case 'Enter' : keys.Enter.pressed = false; break;
     };
     player.moving = false;
 });
+
+
 
