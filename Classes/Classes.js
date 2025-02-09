@@ -100,6 +100,7 @@ class Scene{
         // Display the current conversation if it exists
         if (this.conversationIndex >= 0 && !this.conversations.alreadyDisplayed) {
             this.conversations.conversation[this.conversationIndex].draw();
+            if(this.conversationIndex >= 24) witch.draw();
         }
     
         console.log(this.conversationIndex); // For debugging
@@ -144,7 +145,7 @@ class SceneTitle {
 }
 
 class MessageBox {
-    constructor({ text, color = "white", x = 100, y= 500, width = 700, height = 150, font = "20px 'Press Start 2P'", radius = 10, author = {} }) {
+    constructor({ text, color = "white", x = 100, y= 500, width = 800, height = 150, font = "20px 'Press Start 2P'", radius = 10, author = {} }) {
         this.text = text;
         this.color = color;
         this.font = font;
@@ -167,21 +168,39 @@ class MessageBox {
             fillColor: this.color,
             strokeColor: this.author.color || "black"
         });
-
-        // Draw Message Text
+    
+        // Draw Message Text with Wrapping
         c.fillStyle = this.author.color || "black";  
         c.font = this.font;
-        c.fillText(this.text, this.x + 25, this.y + (this.height / 2) + 10);
-
+    
+        const lineHeight = 30; // Adjust based on font size
+        const maxWidth = this.width - 50; // Padding from both sides
+        const words = this.text.split(' ');
+        let line = '';
+        let y = this.y + 40; // Starting Y position for text
+    
+        for (let i = 0; i < words.length; i++) {
+            const testLine = line + words[i] + ' ';
+            const testWidth = c.measureText(testLine).width;
+    
+            if (testWidth > maxWidth && i > 0) {
+                c.fillText(line, this.x + 25, y);
+                line = words[i] + ' ';
+                y += lineHeight; // Move to next line
+            } else {
+                line = testLine;
+            }
+        }
+        c.fillText(line, this.x + 25, y); // Draw the last line
+    
         // Draw Author Box
         const textWidth = c.measureText(this.author.name || "").width;
         const padding = 5;
         const authorBoxWidth = textWidth + padding;
-
         const authorBoxHeight = 35;
         let authorX = this.x + this.width - authorBoxWidth - 10;
         let authorY = this.y + this.height - authorBoxHeight - 10;
-
+    
         Utility.drawRoundedRect({
             x: authorX,
             y: authorY,
@@ -191,12 +210,13 @@ class MessageBox {
             fillColor: this.author.bgColor || "white",
             strokeColor: this.author.color || "black"
         });
-
+    
         // Draw Author Name
         c.fillStyle = this.author.color || "white";
         c.font = "16px 'Press Start 2P'";
         c.fillText(this.author.name, authorX + 10, authorY + 25);
     }
+    
 }
 
 class TransitionManager {

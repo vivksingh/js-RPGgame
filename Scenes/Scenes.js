@@ -16,6 +16,48 @@ const pb = new Sprite({
     }
 })
 
+const witch = new Sprite({
+    imagePath : '../Assets/witch.png',
+    position : {
+        x : 700,
+        y : 370
+    },
+    velocity : 0,
+    frames : {
+        max : 1
+    },
+    animationFramePaths : {}
+
+})
+
+const sprite = new Sprite({
+    imagePath : '../Assets/vek.png',
+    position : {
+        x : 700,
+        y : 370
+    },
+    velocity : 0,
+    frames : {
+        max : 1
+    },
+    animationFramePaths : {}
+
+})
+
+const vek = new Sprite({
+    imagePath : '../Assets/vek.png',
+    position : {
+        x : 700,
+        y : 370
+    },
+    velocity : 0,
+    frames : {
+        max : 1
+    },
+    animationFramePaths : {}
+
+})
+
 const scenes = {
     homeScene : new Scene({
         offset : offsets.homeSceneOffset,

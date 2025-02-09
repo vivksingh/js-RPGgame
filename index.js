@@ -17,8 +17,9 @@ function gameLoop(){
     window.requestAnimationFrame(gameLoop);
     currentScene.draw();
     currentScene.checkTrigger();
-    //currentScene.drawTriggers();
+    currentScene.drawTriggers();
     //currentScene.drawBounds();
+    // message.draw();
 
 
     transitionManager.update();

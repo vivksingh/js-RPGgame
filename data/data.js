@@ -30,12 +30,12 @@ const keys = {
 const authorMap = {
     vek : {
         name : "Vek",
-        color : 'blue',
+        color : '#0388fc',
     },
 
     pb : {
         name : "Pb",
-        color : 'pink',
+        color : '#fc038c',
     },
 
     witch : {
@@ -58,23 +58,139 @@ Conversations = {
     homeSceneConversation : 
         [
             {
-                author : authorMap.vek,
-                text : "Helllo  welcome to the game"
-            },
-    
-            {
-                author : authorMap.pb,
-                text : "Hello, Vek. How are you?"
+                author: authorMap.pb,
+                text: "(squinting eyes) Whoa, hey there, little kid! What are you doing?"
             },
             {
-                author : authorMap.vek,
-                text : "I am good. How are you?"
+                author: authorMap.pb,
+                text: "Did you escape from… a dollhouse or something?"
             },
-    
             {
-                author : authorMap.pb,
-                text : "I am good too. Let's play the game."
+                author: authorMap.vek,
+                text: "(tiny arms crossed, unimpressed) Excuse me? I’m not a kid. I’m just…"
+            },
+            {
+                author: authorMap.vek,
+                text: "Uh… rendered in economy mode to save game memory."
+            },
+            {
+                author: authorMap.pb,
+                text: "(laughs) Economy mode? What are you, a budget airline?"
+            },
+            {
+                author: authorMap.vek,
+                text: "Yeah, well at least I’m portable. You probably need a loading screen"
+            },
+            {
+                author: authorMap.vek,
+                text: "just to turn around."
+            },
+            {
+                author: authorMap.pb,
+                text: "(chuckles, shaking their head) Alright, alright. Compact or not, let’s get going,"
+            },
+            {
+                author: authorMap.pb,
+                text: "‘fun-sized.’"
+            },
+            {
+                author: authorMap.vek,
+                text: "(tiny voice) Very funny, PB. I’m fun-sized, okay? Like a limited"
+            },
+            {
+                author: authorMap.vek,
+                text: "edition collectible!"
+            },
+            {
+                author: authorMap.pb,
+                text: "More like a limited edition pixel. I’ve seen ants with more"
+            },
+            {
+                author: authorMap.pb,
+                text: "screen presence."
+            },
+            {
+                author: authorMap.vek,
+                text: "Whatevr!! (eats a weird snack called hero snack)"
+            },
+            {
+                author: authorMap.pb,
+                text: "(holding the weird-looking snack) Vek, do you think if I eat"
+            },
+            {
+                author: authorMap.pb,
+                text: "this, I’ll gain superpowers?"
+            },
+            {
+                author: authorMap.vek,
+                text: "Only if your superpower is an urgent need to find a bathroom."
+            },
+            {
+                author: authorMap.pb,
+                text: "Worth it. I’ve always wanted to teleport... just didn’t think"
+            },
+            {
+                author: authorMap.pb,
+                text: "it’d be to the restroom."
+            },
+            {
+                author: authorMap.vek,
+                text: "Us."
+            },
+            {
+                author: authorMap.vek,
+                text: "Btw, did you hear bout that physics witch?"
+            },
+            {
+                author: authorMap.pb,
+                text: "Naah."
+            },
+            {
+                author: authorMap.vek,
+                text: "I’ve heard she’s kidnapping kids... you better watch out."
+            },
+            {
+                author: authorMap.pb,
+                text: "You do realize you’re a game sprite, it’s super tiny, right?"
+            },
+            {
+                author: authorMap.vek,
+                text: "O- OOO F- (physics witch appears)"
+            },
+            // indx = 24
+            {
+                author: authorMap.witch,
+                text: "MWAHAHA! Vek, you shall help me solve the unsolvable physics equation!"
+            },
+            {
+                author: authorMap.vek,
+                text: "(sarcastic) Can’t you just Google it?"
+            },
+            {
+                author: authorMap.witch,
+                text: "Silence!! Two adults are talking! (to pb) i m taking him"
+            },
+            {
+                author: authorMap.witch,
+                text: "(waves wand, The witch takes Vek's soul away!!!)"
+            },
+            {
+                author: authorMap.pb,
+                text: "(jumps up, fists clenched) You messed with the wrong snack-powered hero, Witch!"
+            },
+            {
+                author: authorMap.pb,
+                text: "I’m coming to save you, Vek! Right after I finish this…"
+            },
+            {
+                author: authorMap.pb,
+                text: "(eats snack hurriedly)"
+            },
+            {
+                author: authorMap.witch,
+                text : "to the Forest of Frantic Feelings we go!! (disappears)"
             }
+        
         ],
         
 }
@@ -96,10 +212,16 @@ const TileToMethodMap = {
 
     1027 : () => {
         console.log('prableen Scene Triggered');
+        transitionManager.startTransition(() => {
+            currentScene = scenes.ownHomeScene;
+        });
     },
 
     1028 : () => {
         console.log('kanak Scene Triggered');
+        transitionManager.startTransition(() => {
+            currentScene = scenes.ownHomeScene;
+        });
     },
 
     1029 : () => {
@@ -114,13 +236,7 @@ const TileToMethodMap = {
 
     1031 : () => {
         // home scene convo trigger
-        
-        if(currentScene.conversations.alreadyDisplayed) return
-        const allMessages = currentScene.conversations.conversation;
-
-        
-
-
+        //if(currentScene.conversations.alreadyDisplayed) return;
     }
 }
 
@@ -235,10 +351,10 @@ const TriggerTileMap = {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1031, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1026, 1026, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1026, 1026, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1031, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1031, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
