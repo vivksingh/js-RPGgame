@@ -6,10 +6,6 @@ const transitionManager = new TransitionManager();
 let paused = false;
 let currentScene = scenes.homeScene;
 const player = pb;
-const message = new MessageBox({
-    text: "Hello, World!",
-    author : authorMap.vek
-})
 
 
 // animation loop
@@ -17,9 +13,9 @@ function gameLoop(){
     window.requestAnimationFrame(gameLoop);
     currentScene.draw();
     currentScene.checkTrigger();
-    currentScene.drawTriggers();
+
+    //currentScene.drawTriggers();
     //currentScene.drawBounds();
-    // message.draw();
 
 
     transitionManager.update();

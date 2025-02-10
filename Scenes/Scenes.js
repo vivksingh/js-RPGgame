@@ -4,7 +4,7 @@ const pb = new Sprite({
         x : canvas.width/2 - 192/2,
         y : canvas.height/2 - 68/2
     },
-    velocity : 10,
+    velocity : 16,
     frames : {
         max : 4
     },
@@ -20,7 +20,7 @@ const witch = new Sprite({
     imagePath : '../Assets/witch.png',
     position : {
         x : 700,
-        y : 370
+        y : 270
     },
     velocity : 0,
     frames : {
@@ -58,6 +58,7 @@ const vek = new Sprite({
 
 })
 
+
 const scenes = {
     homeScene : new Scene({
         offset : offsets.homeSceneOffset,
@@ -84,6 +85,7 @@ const scenes = {
             },
             velocity : 0,
         }),
+        title : 'Vek World',
     
         conversation : Conversations.homeSceneConversation,    
     
@@ -108,9 +110,37 @@ const scenes = {
         }),
 
         collisionBoundariesMap : Boundary.ownHomeSceneBoundaries,
-
+        title : "Village House",
         triggerTiles : TriggerTileMap.ownHomeSceneTriggerTiles
 
+    }),
+
+    forestScene : new Scene({
+        offset : offsets.forestSceneOffset,
+        player : pb,
+
+        background : new Sprite({
+            position : {
+                x: offsets.forestSceneOffset.x,
+                y: offsets.forestSceneOffset.y
+            },
+            velocity : 0,
+            imagePath : '../Assets/forestMap.png'
+        }),
+
+        foreground : new Sprite({
+            imagePath : './Assets/forestMapForeground.png',
+            position : {
+                x : offsets.forestSceneOffset.x,
+                y : offsets.forestSceneOffset.y
+            },
+            velocity : 0,
+        }),
+
+        title : "Forest of Frantic Feelings",
+        conversation : Conversations.forestSceneConversation,
+        collisionBoundariesMap : Boundary.forestSceneBoundaries,
+        triggerTiles : TriggerTileMap.forestSceneTriggerTiles
     })
 }
 

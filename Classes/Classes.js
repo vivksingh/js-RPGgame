@@ -72,7 +72,7 @@ class Sprite{
 }
 
 class Scene{
-    constructor({ background, player, foreground, collisionBoundariesMap, offset = {x : 0, y : 0}, conversation = [], triggerTiles = [] }){
+    constructor({ background, player, foreground, collisionBoundariesMap, offset = {x : 0, y : 0}, conversation = [], triggerTiles = [], title }){
         this.background = background;
         this.player = player;
         this.foreground = foreground;
@@ -82,6 +82,7 @@ class Scene{
         this.movables = [...this.collisionBoundaries, ...this.triggerTiles, this.background];
         if(this.foreground) this.movables.push(this.foreground);
         this.offset = offset;
+        this.title = new SceneTitle({ text : title });
         this.conversationIndex = -1;
     }
 
@@ -90,6 +91,8 @@ class Scene{
         this.background.draw();
         this.player.draw();
         if (this.foreground) this.foreground.draw();
+        this.title.draw();
+
     
         // Handle conversations
         if (this.conversationIndex >= this.conversations.conversation.length) {
@@ -263,8 +266,5 @@ class TransitionManager {
         }
     }
 }
-
-
-
 
 
