@@ -4,7 +4,7 @@ const pb = new Sprite({
         x : canvas.width/2 - 192/2,
         y : canvas.height/2 - 68/2
     },
-    velocity : 16,
+    velocity : 10,
     frames : {
         max : 4
     },
@@ -19,7 +19,7 @@ const pb = new Sprite({
 const witch = new Sprite({
     imagePath : '../Assets/witch.png',
     position : {
-        x : 700,
+        x : 500,
         y : 270
     },
     velocity : 0,
@@ -57,7 +57,6 @@ const vek = new Sprite({
     animationFramePaths : {}
 
 })
-
 
 const scenes = {
     homeScene : new Scene({

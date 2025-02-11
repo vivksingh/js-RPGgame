@@ -103,7 +103,7 @@ class Scene{
         // Display the current conversation if it exists
         if (this.conversationIndex >= 0 && !this.conversations.alreadyDisplayed) {
             this.conversations.conversation[this.conversationIndex].draw();
-            if(this.conversationIndex >= 24) witch.draw();
+            if(this.conversationIndex >= 24 && currentScene === scenes.homeScene) witch.draw();
         }
     
         console.log(this.conversationIndex); // For debugging

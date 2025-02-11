@@ -42,8 +42,8 @@ const authorMap = {
         color : 'purple',
     },
 
-    prableen : {
-        name : "Prableen",
+    caterpillar : {
+        name : "Sir Wiggleton III",
         color : 'green',
     },
 
@@ -193,20 +193,115 @@ Conversations = {
         ],
 
     forestSceneConversation : [
-        {
-            author : authorMap.prableen,
-            text : "hello fellow person", 
-        },
-
-        {
-            author : authorMap.pb,
-            text : "wassup"
-        },
-        {
-            author : authorMap.prableen,
-            text : "zamnnn!!"
-        }
-    ]
+            {
+                author: authorMap.pb,
+                text: "(panting) Ugh, finally out of that maze."
+            },
+            {
+                author: authorMap.pb,
+                text: "Hey, you—caterpillar. Do you know the way to the Evil Physics Witch’s lair?"
+            },
+            {
+                author: authorMap.caterpillar,
+                text: "(adjusts sunglasses dramatically) First of all, I have a name."
+            },
+            {
+                author: authorMap.caterpillar,
+                text: "It’s Sir Wiggleton the Third. Show some respect."
+            },
+            {
+                author: authorMap.pb,
+                text: "(blinking) …You’re literally a squishy noodle with legs."
+            },
+            {
+                author: authorMap.caterpillar,
+                text: "Excuse you, I’m not just a squishy noodle—"
+            },
+            {
+                author: authorMap.caterpillar,
+                text: "I’m a squishy noodle with flair. (strikes a pose)"
+            },
+            {
+                author: authorMap.pb,
+                text: "(rolling eyes) Alright, Sir Wiggleton the Third,"
+            },
+            {
+                author: authorMap.pb,
+                text: "can you tell me where the witch’s lair is?"
+            },
+            {
+                author: authorMap.caterpillar,
+                text: "Hmm, depends. What’s in it for me?"
+            },
+            {
+                author: authorMap.pb,
+                text: "How about… the satisfaction of helping a heroic adventurer?"
+            },
+            {
+                author: authorMap.caterpillar,
+                text: "Pass. Heroic adventurers don’t pay well."
+            },
+            {
+                author: authorMap.caterpillar,
+                text: "Got any snacks?"
+            },
+            {
+                author: authorMap.pb,
+                text: "(checks pockets) Uh… I have… half a melted chocolate."
+            },
+            {
+                author: authorMap.pb,
+                text: "And… a suspiciously old gum."
+            },
+            {
+                author: authorMap.caterpillar,
+                text: "(gasps dramatically) Sold. Hand over the chocolate."
+            },
+            {
+                author: authorMap.caterpillar,
+                text: "(grabs it greedily)"
+            },
+            {
+                author: authorMap.pb,
+                text: "Now directions, please?"
+            },
+            {
+                author: authorMap.caterpillar,
+                text: "(chewing dramatically) Fine. Go right towards the ocean -"
+            },
+            {
+                author: authorMap.caterpillar,
+                text : "until the trees start whispering diferential questions."
+            },
+            {
+                author: authorMap.caterpillar,
+                text: "Then follow the path of slightly ominous glowing mushrooms."
+            },
+            {
+                author: authorMap.caterpillar,
+                text: "You’ll reach the witch’s lair—The Perilous Paradox Palace."
+            },
+            {
+                author: authorMap.pb,
+                text: "‘Perilous Paradox Palace’? Sounds unnecessarily complicated."
+            },
+            {
+                author: authorMap.caterpillar,
+                text: "That’s physics for you. Everything’s complicated."
+            },
+            {
+                author: authorMap.pb,
+                text: "(sighs) Great. Thanks, Sir Wiggleton."
+            },
+            {
+                author: authorMap.pb,
+                text: "Try not to melt in the sun."
+            },
+            {
+                author: authorMap.caterpillar,
+                text: "(shouting as PB walks away) I don’t melt, I glisten!"
+            }
+        ]
         
 }
 
@@ -362,7 +457,7 @@ const Boundary = {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 
-        forestSceneBoundaries : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    forestSceneBoundaries : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,

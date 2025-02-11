@@ -1,8 +1,6 @@
 
 
 const transitionManager = new TransitionManager();
-
-
 let paused = false;
 let currentScene = scenes.homeScene;
 const player = pb;
@@ -133,8 +131,6 @@ function gameLoop(){
             }
         }
     }
-
-    
 }
 
 gameLoop();
