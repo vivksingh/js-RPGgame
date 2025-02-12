@@ -1,25 +1,34 @@
-let lastKey = null;
 window.addEventListener('keydown', (e) => {
-    switch(e.key){
-        case 'w' : keys.W.pressed = true; lastKey = 'w'; break;
-        case 'a' : keys.A.pressed = true; lastKey = 'a'; break;
-        case 's' : keys.S.pressed = true; lastKey = 's'; break;
-        case 'd' : keys.D.pressed = true; lastKey = 'd'; break;
-        case 'Enter' : keys.Enter.pressed = true; break;
-    };
-    player.moving = true;
+    handleKeyPress(e.key, true);
 });
 
 window.addEventListener('keyup', (e) => {
-    switch(e.key){
-        case 'w' : keys.W.pressed = false; break;
-        case 'a' : keys.A.pressed = false; break;
-        case 's' : keys.S.pressed = false; break;
-        case 'd' : keys.D.pressed = false; break;
-        case 'Enter' : keys.Enter.pressed = false; break;
-    };
-    player.moving = false;
+    handleKeyPress(e.key, false);
 });
 
+// Mobile controls
+document.querySelectorAll('.btn').forEach(button => {
+    button.addEventListener('touchstart', (e) => {
+        const key = e.target.dataset.key;
+        handleKeyPress(key, true);
+        e.preventDefault();
+    });
 
+    button.addEventListener('touchend', (e) => {
+        const key = e.target.dataset.key;
+        handleKeyPress(key, false);
+        e.preventDefault();
+    });
+});
+
+function handleKeyPress(key, isPressed) {
+    switch (key) {
+        case 'w': keys.W.pressed = isPressed; if (isPressed) lastKey = 'w'; break;
+        case 'a': keys.A.pressed = isPressed; if (isPressed) lastKey = 'a'; break;
+        case 's': keys.S.pressed = isPressed; if (isPressed) lastKey = 's'; break;
+        case 'd': keys.D.pressed = isPressed; if (isPressed) lastKey = 'd'; break;
+        case 'Enter': keys.Enter.pressed = isPressed; break;
+    }
+    player.moving = isPressed;
+}
 

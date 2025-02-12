@@ -1,7 +1,4 @@
-
-
 const transitionManager = new TransitionManager();
-let paused = false;
 let currentScene = scenes.homeScene;
 const player = pb;
 
@@ -125,6 +122,7 @@ function gameLoop(){
                     currentScene.conversationIndex++; // Safe to increment
                 } else {
                     currentScene.conversations.alreadyDisplayed = true; // Mark as done
+                    if(currentScene === scenes.finalScene) transitionManager.startTransition(() => currentScene = scenes.endingScene);
                 }
                 keys.Enter.pressed = false; // Reset key press
                 break;

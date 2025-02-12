@@ -4,7 +4,7 @@ const pb = new Sprite({
         x : canvas.width/2 - 192/2,
         y : canvas.height/2 - 68/2
     },
-    velocity : 10,
+    velocity : 14,
     frames : {
         max : 4
     },
@@ -140,6 +140,85 @@ const scenes = {
         conversation : Conversations.forestSceneConversation,
         collisionBoundariesMap : Boundary.forestSceneBoundaries,
         triggerTiles : TriggerTileMap.forestSceneTriggerTiles
+    }),
+
+    witchVillageScene : new Scene({
+        offset : offsets.witchVillageSceneOffset,
+        player : pb,
+        background : new Sprite({
+            position : {
+                x: offsets.witchVillageSceneOffset.x,
+                y: offsets.witchVillageSceneOffset.y
+            },
+            velocity : 0,
+            imagePath : './Assets/witchVillageMap.png'
+        }),
+        title : "Witch Village",
+
+        foreground : new Sprite({
+            imagePath : './Assets/witchVillageForeground.png',
+            position : {
+                x : offsets.witchVillageSceneOffset.x,
+                y : offsets.witchVillageSceneOffset.y
+            },
+            velocity : 0,
+        }),
+        conversation : Conversations.witchVillageSceneConversation,
+        collisionBoundariesMap : Boundary.witchVillageSceneBoundaries,
+        triggerTiles : TriggerTileMap.witchVillageSceneTriggerTiles
+    }),
+
+    witchVillageHouseScene : new Scene({
+        offset : offsets.ownHomeSceneOffset,
+        player : pb,
+
+        background : new Sprite({
+            position : {
+                x: offsets.ownHomeSceneOffset.x,
+                y: offsets.ownHomeSceneOffset.y
+            },
+            velocity : 0,
+            imagePath : '../Assets/ownHomeMap.png'
+        }),
+        
+        collisionBoundariesMap : Boundary.ownHomeSceneBoundaries,
+        title : " Witch Village House",
+        triggerTiles : TriggerTileMap.witchVillageHouseSceneTriggerTiles
+    
+    }),
+
+    finalScene : new Scene({
+        offset : offsets.finalSceneOffset,
+        player : pb,
+
+        background : new Sprite({
+            position : {
+                x: offsets.finalSceneOffset.x,
+                y: offsets.finalSceneOffset.y
+            },
+            velocity : 0,
+            imagePath : '../Assets/FinalMap.png'
+        }),
+        
+        conversation : Conversations.finalSceneConversation,
+        title : "Please Press Enter to Continue",
+        collisionBoundariesMap : Boundary.finalSceneBoundaries,
+        triggerTiles : TriggerTileMap.finalSceneTriggerTiles
+    }),
+
+    endingScene : new Scene({
+        background : new Sprite({
+            position : {
+                x: 0,
+                y: 0
+            },
+            velocity : 0,
+            imagePath : '../Assets/endingScene.png'
+        }),
+
+        title : "Thank You and I love you <3",
+        collisionBoundariesMap : [],
+        triggerTiles : [],
     })
 }
 

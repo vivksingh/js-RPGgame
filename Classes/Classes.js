@@ -89,13 +89,14 @@ class Scene{
     draw() {
         // Draw the basic scene
         this.background.draw();
-        this.player.draw();
+        if(this.player) this.player.draw();
         if (this.foreground) this.foreground.draw();
         this.title.draw();
 
     
         // Handle conversations
         if (this.conversationIndex >= this.conversations.conversation.length) {
+            
             this.conversations.alreadyDisplayed = true; // Mark as displayed when finished
             this.conversationIndex = this.conversations.conversation.length - 1; // Prevent out-of-bounds
         }
@@ -105,8 +106,6 @@ class Scene{
             this.conversations.conversation[this.conversationIndex].draw();
             if(this.conversationIndex >= 24 && currentScene === scenes.homeScene) witch.draw();
         }
-    
-        console.log(this.conversationIndex); // For debugging
     }
 
     checkTrigger(){
@@ -266,5 +265,3 @@ class TransitionManager {
         }
     }
 }
-
-
