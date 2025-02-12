@@ -4,7 +4,7 @@ const pb = new Sprite({
         x : canvas.width/2 - 192/2,
         y : canvas.height/2 - 68/2
     },
-    velocity : 14,
+    velocity : 10,
     frames : {
         max : 4
     },
