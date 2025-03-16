@@ -4,7 +4,7 @@ const pb = new Sprite({
         x : canvas.width/2 - 192/2,
         y : canvas.height/2 - 68/2
     },
-    velocity : 10,
+    velocity : 16,
     frames : {
         max : 4
     },
@@ -216,7 +216,7 @@ const scenes = {
             imagePath : '../Assets/endingScene.png'
         }),
 
-        title : "Thank You and I love you <3",
+        title : "Thank You For Playing",
         collisionBoundariesMap : [],
         triggerTiles : [],
     })
